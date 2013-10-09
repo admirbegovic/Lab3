@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Hendelser med jQuery</title>
+	<!-- Husk å legge til CSS filen din her" -->
+	<script src="js/jquery-1.8.1.js"></script>
+    <script>
+	
+	$(function() {
+		// Setter en "observatør" for keydown hendelse på noden document.body
+	    $(document.body).on('keydown', function(e) {
+		
+		// Sorterer ut de tastetrykkene man ønsker å gi en respons på
+		// Her brukes det en struktur switch som finnes i de fleste programmeringsspråk
+		switch (e.which) {
+			// tastekode for venstre pil; responsen er en utskrift til konsollen (innebygd i nettlesere)
+			case 37:
+				// tastekode for venstre pil tast
+				console.log( 'venstre pil tast trykket!' );
+				break;
+        
+			// tastekode for høyre pil
+			case 39:
+				console.log( 'høyre pil tast trykket!' );
+				break;
+				// tastekode for pil tast ned
+			case 40:
+				console.log ('pil tast ned er trykket!' );
+				break;
+			// tastekode for pil tast opp
+			case 38:
+				console.log('pil tast opp er trykket! ');
+				break;
+		}
+		});
+	});
+	// Her bruker jeg en input funksjon som da viser på input formen, for hva enn du skriver inne i inputen. Så vil brukeren få et brukbart respons om hvilken tallkode de har trykket på med tastetrykk.
+	$(document).ready(function(){
+  $("input").keydown(function(event){ 
+    $("#p1").html("Key: " + event.which);
+  });
+  
+});
+
+// denne funksjonen er manuell, den er linket til en button på HTML siden, og når du trykker på knappen vil teksten som endrer kodetast endre seg til blå som har ID "p1".
+function display()
+{
+var col=document.getElementById("p1");
+col.style.color="blue";
+}
+	</script>
+</head>
+<body>
+	<p>Testside for å "fange" hendelser fra tastatur.</p>
+	<p>
+		<ul>
+			<li>Bruk helst Google Chrome (norsk versjon).</li> 
+			<li>Trykk høyre museknapp og velg "Inspiser element".</li> 
+			<li>Velg "Console" fra hjelpeverktøyets hovedmenyen.</li>
+		</ul>
+	</p>
+	<p>Man har Console også i andre nettlesere. Bruker du en annen nettleser søk på "JavaScript console" for din nettleser for å finne ut hvordan du kan bruke det.</p>
+	Skriv inn noe her: <input type="text">
+<p>Når du skriver noe her, vil du se hvilken kodetast du trykket på med hvert tastetrykk.</p>
+<p id="p1"> Her vil du se kodetastene for hvert tastetrykk, knappen under vil skifte denne teksten til blå</p>
+<button onclick="display()">Trykk på meg</button>
+</body>
+</html>
