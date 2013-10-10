@@ -5,6 +5,7 @@
 	<title>Hendelser med jQuery</title>
 	<!-- Husk å legge til CSS filen din her" -->
 	<script src="js/jquery-1.8.1.js"></script>
+	<link rel="stylesheet" href="css.css">
     <script>
 	
 	$(function() {
@@ -18,37 +19,27 @@
 			case 37:
 				// tastekode for venstre pil tast
 				console.log( 'venstre pil tast trykket!' );
+				$("#keypressed").addClass("blue").html("Venstre pil tast trykket!") ;
 				break;
         
 			// tastekode for høyre pil
 			case 39:
 				console.log( 'høyre pil tast trykket!' );
+				$("#keypressed").addClass("blue").html("Høyre pil tast trykket!") ;
 				break;
 				// tastekode for pil tast ned
 			case 40:
 				console.log ('pil tast ned er trykket!' );
+				$("#keypressed").addClass("blue").html("Pil tast ned trykket!") ;
 				break;
 			// tastekode for pil tast opp
 			case 38:
 				console.log('pil tast opp er trykket! ');
+				$("#keypressed").addClass("blue").html("Pil tast opp trykket!") ;
 				break;
 		}
 		});
 	});
-	// Her bruker jeg en input funksjon som da viser på input formen, for hva enn du skriver inne i inputen. Så vil brukeren få et brukbart respons om hvilken tallkode de har trykket på med tastetrykk.
-	$(document).ready(function(){
-  $("input").keydown(function(event){ 
-    $("#p1").html("Key: " + event.which);
-  });
-  
-});
-
-// denne funksjonen er manuell, den er linket til en button på HTML siden, og når du trykker på knappen vil teksten som endrer kodetast endre seg til blå som har ID "p1".
-function display()
-{
-var col=document.getElementById("p1");
-col.style.color="blue";
-}
 	</script>
 </head>
 <body>
@@ -63,7 +54,6 @@ col.style.color="blue";
 	<p>Man har Console også i andre nettlesere. Bruker du en annen nettleser søk på "JavaScript console" for din nettleser for å finne ut hvordan du kan bruke det.</p>
 	Skriv inn noe her: <input type="text">
 <p>Når du skriver noe her, vil du se hvilken kodetast du trykket på med hvert tastetrykk.</p>
-<p id="p1"> Her vil du se kodetastene for hvert tastetrykk, knappen under vil skifte denne teksten til blå</p>
-<button onclick="display()">Trykk på meg</button>
+<p id="keypressed"></p>
 </body>
 </html>

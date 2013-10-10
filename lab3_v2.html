@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
 	<title>Hendelser med jQuery</title>
 	<!-- Husk å legge til CSS filen din her" -->
+	<link rel="stylesheet" href="css.css">
 	<script src="js/jquery-1.8.1.js"></script>
     <script>
 	
@@ -26,17 +27,29 @@
 				x: e.pageX - canvasPosition.x,
 				y: e.pageY - canvasPosition.y
 			}
-		
+			var cord = e.pageX + (",") + e.pageY;
+			
+			
+			var cordx = e.pageX;
+			var cordy = e.pageY;
 		/*
 		   Nå har du lokale koordinater i mouse.x og mouse.y som er beregnet i forhold til det lokale 
 		   koordinatsystemet i my_canvas med (0,0) i det øverste venstre hjørne
 		*/
 			// Skriv koordinatene ut til console basert på lab3_v1
 			// oppgave 2 a) besvares her
+			console.log(cord);
+			
 			
 			// Her skrives koordinatene ut til en <span> node
 			// Man skriver til innerHTML og også legger på stil (farge osv.)
 			// oppgave 2 b) besvares her
+			$("#CordX").html("Avstanden fra den venstre kanten av Canvas er " );
+			$("#CordY").html("Avstanden fra den øvre kanten av Canvas er ");
+			
+			// Farger, stiler, bold tekst osv for HTML utskriften ovenfor.
+			$("#redX").addClass("red").html(cordx);
+			$("#blueY").addClass("blue").html(cordy);
 			
 			return false;
 		});
@@ -53,68 +66,10 @@
 		</ul>
 	</p>
 	<canvas id="my_canvas" width="200" height="200"></canvas>
-	<script>
-	// Dette er koden for oppgave A i del 2. Denne funksjonen gjør at koordinatene X og Y skriver til consol hvert 1000 MS.
-	var m_pos_x,m_pos_y;
-window.onmousemove = function(e) { m_pos_x = e.pageX;m_pos_y = e.pageY; }
-setInterval(function() { console.log("x= " + m_pos_x + "y = " + m_pos_y); },1000);
-
-var IE = document.all?true:false
-
-
-            if (!IE) document.captureEvents(Event.MOUSEMOVE)
-
-
-            document.onmousemove = getMouseXY;
-
-
-            var tempX = 0
-            var tempY = 0
-
-
-
-            function getMouseXY(e) {
-                if (IE) { 
-
-                tempX = event.clientX + document.body.scrollLeft
-                tempY = event.clientY + document.body.scrollTop
-                } 
-                else 
-                {  
-                 tempX = e.pageX
-                 tempY = e.pageY
-                }  
-
-
-                document.Show.MouseX.value = tempX
-                document.Show.MouseY.value = tempY
-
-                return true
-                }
-				
-				function myFunction(e)
-{
-x=e.clientX;
-y=e.clientY;
-coor="Coordinates: (" + x + "," + y + ")";
-document.getElementById("demo").innerHTML=coor
-}
-
-function clearCoor()
-{
-document.getElementById("demo").innerHTML="";
-}		
-			
-</script>
-<form name="Show"><center>
-            <input type="text" name="MouseX" value="0" size="4"> X posisjon<br>
-            <input type="text" name="MouseY" value="0" size="4"> Y posisjon<br>
-      	 </form>
-		</center>
-		<div id="coordiv" style="width:199px;height:99px;border:1px solid" onmousemove="myFunction(event)" onmouseout="clearCoor()"></div>
-
-<p>Dette er en test og eksempel på hvordan X og Y akse fungerer på canvas tegningen, mus over firkanten og du vil se X akse og Y akse under.</p>
-
-<p id="demo"></p>
+	
+	<p>
+	<span id="CordX"></span>  <span id="redX"></span> <br>
+	<span id="CordY"></span>  <span id="blueY"></span>
+	</p>
 		 </body>
 </html>

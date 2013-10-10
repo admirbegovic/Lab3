@@ -6,8 +6,10 @@
 	<script src="js/jquery-1.8.1.js"></script>
 	<!-- Setter inn jcanvas biblioteket som bygger på jQuery -->
 	<script src="js/jcanvas.min.js"></script>
+
 	
 	<!-- Husk å legge til CSS filen din her" -->
+	<link rel="stylesheet" href="css.css">
 	
     <script>
 	$(function() {
@@ -33,6 +35,12 @@
 				y: e.pageY - canvasPosition.y
 			}
 		
+			var cord = e.pageX + (",") + e.pageY;
+			
+			
+			var cordx = e.pageX;
+			var cordy = e.pageY;
+		
 		/*
 		   nå har du lokale koordinater mouse.x og mouse.y
 		   som er beregnet i forhold til det lokale 
@@ -41,9 +49,16 @@
 		*/
 			// Skriv koordinatene ut til console basert på lab3_v2
 			// Kopier fra lab2_v2
+			console.log(cord);
 			
 			// Her bare kopieres lignende løsning fra lab3_v2
 			// for å skrive ut til <span> elementnoden
+			$("#CordX").html("Avstanden fra den venstre kanten av Canvas er " );
+			$("#CordY").html("Avstanden fra den øvre kanten av Canvas er ");
+			
+			// Farger, stiler, bold tekst osv for HTML utskriften ovenfor.
+			$("#redX").addClass("red").html(cordx);
+			$("#blueY").addClass("blue").html(cordy);
 			
 			// Dette er kode for deloppgave 2
 			// Her er to metoder kalt opp etter hverandre og begge tilhører objektet canvas
@@ -54,39 +69,19 @@
 			})
 			.drawText({
 				// Her besvares deloppgave 2 (se lenken til jCanvas dokumentasjon i oppgaveteksten)
+				// her skriver jeg det som stod i oppgaven, gir fyll, stil og aksen på hvor musen er, og til slutt vil teksten skrives ut der X og Y musepekeren er.
+			filltyle:"#FF0099",
+			strokeStyle:"#0000FF",
+			strokeWidth: 0.8,
+			x: mouse.x, y: mouse.y,
+			font: "8pt Verdana, sans-serif",
+			text: mouse.x + " , " + mouse.y
+			
 			});
 			
 			return false;
 		});
 	}); 
-	function myFunction(e)
-{
-x=e.clientX;
-y=e.clientY;
-coor="Coordinates: (" + x + "," + y + ")";
-document.getElementById("demo").innerHTML=coor
-}
-
-function clearCoor()
-{
-document.getElementById("demo").innerHTML="";
-}
-
-canvas.addEventListener("mousedown", getPosition, false);
-
-function getPosition(event)
-{
-  var x = event.x;
-  var y = event.y;
-
-  var canvas = document.getElementById("my_canvas");
-
-  x -= canvas.offsetLeft;
-  y -= canvas.offsetTop;
-
-  alert("x:" + x + " y:" + y);
-}
-	
 	</script>
 </head>
 <body>
@@ -99,10 +94,10 @@ function getPosition(event)
 		</ul>
 	</p>
 	<canvas id="my_canvas" width="200" height="200"></canvas>
-	<div id="coordiv" style="width:199px;height:99px;border:1px solid" onmousemove="myFunction(event)" onmouseout="clearCoor()"></div>
-
-<p>Mouse over the rectangle above, and get the coordinates of your mouse pointer.</p>
-
-<p id="demo"></p>
+	<!-- Oppgaveløsning skal implementeres her -->
+	<p>
+	<span id="CordX"></span>  <span id="redX"></span> <br>
+	<span id="CordY"></span>  <span id="blueY"></span>
+	</p>
 </body>
 </html>
